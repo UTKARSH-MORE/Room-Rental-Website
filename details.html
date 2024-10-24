@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Owner and Room Details</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        function loadOwnerDetails() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const owner = urlParams.get('owner');
+            const details = document.getElementById('owner-details');
+
+            let ownerInfo = {
+                'raju': {
+                    name: 'Raju',
+                    address: '123 Main St, Downtown',
+                    price: '$800/month',
+                    contact: 'raju@example.com'
+                },
+                'rohan': {
+                    name: 'Rohan',
+                    address: '456 Park Ave, Near the Park',
+                    price: '$600/month',
+                    contact: 'rohan@example.com'
+                },
+                'john': {
+                    name: 'John',
+                    address: '789 River Rd, Downtown',
+                    price: '$700/month',
+                    contact: 'john@example.com'
+                }
+            };
+
+            if (ownerInfo[owner]) {
+                details.innerHTML = `
+                    <h2>Room by ${ownerInfo[owner].name}</h2>
+                    <p>Address: ${ownerInfo[owner].address}</p>
+                    <p>Price: ${ownerInfo[owner].price}</p>
+                    <p>Contact: ${ownerInfo[owner].contact}</p>
+                    <button onclick="bookRoom()">Book Room</button>
+                    <button onclick="messageOwner()">Message Owner</button>
+                `;
+            } else {
+                details.innerHTML = '<p>Owner not found.</p>';
+            }
+        }
+
+        function bookRoom() {
+            alert('Room booked successfully!');
+        }
+
+        function messageOwner() {
+            alert('Message option to ask something.');
+        }
+    </script>
+</head>
+<body onload="loadOwnerDetails()">
+    <header>
+        <h1>Owner and Room Details</h1>
+    </header>
+
+    <main>
+        <div id="owner-details" class="details-container"></div>
+        <button onclick="window.location.href='index.html'">Back to Listings</button>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Room Rental Website</p>
+    </footer>
+</body>
+</html>
